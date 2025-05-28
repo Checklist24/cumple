@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuenta Regresiva - Cynthia 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background: url("http://imgfz.com/i/B4ViJY7.jpeg") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .title p {
+            font-size: 1.5rem;
+        }
+
+        .title h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .contador p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .contador h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff4081;
+        }
+
+        .hora {
+            font-size: 1.8rem;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .decoraciones {
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            animation: girar 10s linear infinite;
+        }
+
+        @keyframes girar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .title h1 {
+                font-size: 2rem;
+            }
+
+            .contador h1 {
+                font-size: 2.5rem;
+            }
+
+            .hora {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <p>🎈 Cumple</p>
+            <h1>30 años 🎂</h1>
+        </div>
+
+        <div class="contador">
+            <p>⏳ Faltan:</p>
+            <h1 id="dias">0</h1>
+            <p>días</p>
+
+            <div class="hora">
+                <span id="horas">00</span> :
+                <span id="minutos">00</span> :
+                <span id="segundos">00</span>
+            </div>
+        </div>
+
+        <div class="decoraciones">
+            🎉🎊🎈✨💖
+        </div>
+    </div>
+
+    <script>
+        // Fecha del cumpleaños de Cynthia 🎉
+        const cumple = new Date('2025-09-15T00:00:00'); // Ajusta la fecha aquí
+
+        function actualizarContador() {
+            const ahora = new Date();
+            const diferencia = cumple - ahora;
+
+            if (diferencia <= 0) {
+                document.getElementById('dias').textContent = "0";
+                document.getElementById('horas').textContent = "00";
+                document.getElementById('minutos').textContent = "00";
+                document.getElementById('segundos').textContent = "00";
+                return;
+            }
+
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            document.getElementById('dias').textContent = dias;
+            document.getElementById('horas').textContent = String(horas).padStart(2, '0');
+            document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
+            document.getElementById('segundos').textContent = String(segundos).padStart(2, '0');
+        }
+
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
+    </script>
+</body>
+</html>
